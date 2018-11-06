@@ -1,0 +1,11 @@
+*.egg-info/
+.ipynb_checkpoints/
+dist/
+build/
+*.py[cod]
+
+# Compiled javascript
+scribble/static/
+
+# OS X
+.DS_Store
