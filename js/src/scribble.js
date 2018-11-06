@@ -26,7 +26,7 @@ var P5View = widgets.DOMWidgetView.extend({
         this.el.appendChild(this.p5.canvas);
 		console.log("scribble end initialize");
 	},
-	
+
     render: function() {
         console.log("scribble start render");
         this.p5.values = this.model.get('values');
@@ -35,13 +35,13 @@ var P5View = widgets.DOMWidgetView.extend({
     	this.model.on("change", this.value_changed, this);
         console.log("scribble end render");
 	},
-	
+
 	value_changed: function() {
     	console.log("scribble value_changed");
     	this.p5.values = this.model.get('values');
         this.p5.draw();
     },
-    
+
 	remove: function() {
     	console.log("scribble remove");
         P5View.__super__.remove.apply(this, arguments);

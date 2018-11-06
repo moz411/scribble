@@ -3,6 +3,9 @@ scribble
 
 Draw 2D primitives in a sketchy look, from p5.scribble.js
 
+![Scribble](notebooks/scribble.png)
+
+
 Installation
 ------------
 
