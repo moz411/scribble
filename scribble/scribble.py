@@ -1,5 +1,5 @@
 import ipywidgets as widgets
-from traitlets import Unicode, List, default
+from traitlets import Unicode, List, Tuple, default
 
 module_name = 'scribble'
 module_version = '0.1.0'
@@ -13,4 +13,4 @@ class BarChart(widgets.DOMWidget):
     _view_module = Unicode(module_name).tag(sync=True)
     _view_module_version = Unicode(module_version).tag(sync=True)
     values = List([]).tag(sync=True)
-    
+    size = Tuple((800,600)).tag(sync=True)

@@ -22,9 +22,10 @@ module.exports = function( p ) {
 		console.log("scribble sketch end setup");
 		};
 
-	p.draw = function() {	
+	p.draw = function() {
 		console.log("scribble sketch start draw");
 		var values = p.values || -1;
+		console.log(p);
 		// the gap between two hachure lines
 		var gap = 3.5;
 		// the angle of the hachure in degrees
@@ -38,17 +39,17 @@ module.exports = function( p ) {
         var width      = ( p.width * 0.7 * 0.98 ) / values.length;
         var spacer     = ( p.width * 0.3 * 0.98 ) / ( values.length + 1 );
         var halfHeight = p.height / 2;
-		
+
 		// draw every value as a filled rect in a bar graph
 		for ( var i = 0; i < values.length; i++ ) {
 			// calculate the x and y coordinates of the center of the rect and the height
 			var h = halfHeight * 0.01 * values[i];
 			var x = ( spacer + width ) * ( i + 1 ) - ( width / 2 );
 			var y = halfHeight - h / 2;
-			
+
 			// draw a rect for the value
 			p.scribble.scribbleRect( x, y, width, h );
-			
+
 			// calculate the x and y coordinates for the border points of the hachure
 			var xleft   = x - width / 2 + 5;
 			var xright  = x + width / 2 - 5;
@@ -71,5 +72,12 @@ module.exports = function( p ) {
 			};
 
 		console.log("scribble sketch end draw");
+		};
+
+		p.windowResized = function() {
+			console.log("scribble sketch start windowResized");
+			// resize drawing window
+			p.resizeCanvas(p.width, p.height);
+			console.log("scribble sketch end windowResized");
 		};
 };

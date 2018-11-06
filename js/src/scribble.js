@@ -13,42 +13,49 @@ var BarChartModel = widgets.DOMWidgetModel.extend({
         _view_module : 'scribble',
         _model_module_version: "0.1.0",
         _view_module_version: "0.1.0",
-        values : []
+        values: [],
+        width: 800,
+        height: 600
     })
 });
 
 var P5View = widgets.DOMWidgetView.extend({
 	initialize : function() {
-		console.log("scribble start initialize");
-		// build P5 window
-		this.p5 = new p5(sketch);
-        // append elmt to dom
-        this.el.appendChild(this.p5.canvas);
-		console.log("scribble end initialize");
+    console.log("scribble start initialize");
+    // build P5 window
+    this.p5 = new p5(sketch);
+    // append elmt to dom
+    this.el.appendChild(this.p5.canvas);
+    console.log("scribble end initialize");
 	},
 
-    render: function() {
-        console.log("scribble start render");
-        this.p5.values = this.model.get('values');
-        this.p5.draw();
-    	// event listener
-    	this.model.on("change", this.value_changed, this);
-        console.log("scribble end render");
-	},
+  render: function() {
+    console.log("scribble start render");
+    this.p5.values = this.model.get('values');
+    this.p5.width = this.model.get('size')[0];
+    this.p5.height = this.model.get('size')[1];
+    this.p5.draw();
+    // event listener
+    this.model.on("change", this.value_changed, this);
+    console.log("scribble end render");
+  },
 
 	value_changed: function() {
-    	console.log("scribble value_changed");
-    	this.p5.values = this.model.get('values');
-        this.p5.draw();
-    },
+    console.log("scribble start value_changed");
+    this.p5.values = this.model.get('values');
+    this.p5.width = this.model.get('size');
+    this.p5.height = this.model.get('size');
+    this.p5.windowResized();
+      console.log("scribble end value_changed");
+  },
 
 	remove: function() {
-    	console.log("scribble remove");
-        P5View.__super__.remove.apply(this, arguments);
-    }
+    console.log("scribble remove");
+    P5View.__super__.remove.apply(this, arguments);
+  }
 });
 
 module.exports = {
-    BarChartModel:BarChartModel,
-    P5View:P5View
+  BarChartModel:BarChartModel,
+  P5View:P5View
 }
