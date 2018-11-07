@@ -13,9 +13,7 @@ var BarChartModel = widgets.DOMWidgetModel.extend({
         _view_module : 'scribble',
         _model_module_version: "0.1.0",
         _view_module_version: "0.1.0",
-        values: [],
-        width: 800,
-        height: 600
+        values: []
     })
 });
 
@@ -32,8 +30,6 @@ var P5View = widgets.DOMWidgetView.extend({
   render: function() {
     console.log("scribble start render");
     this.p5.values = this.model.get('values');
-    this.p5.width = this.model.get('size')[0];
-    this.p5.height = this.model.get('size')[1];
     this.p5.draw();
     // event listener
     this.model.on("change", this.value_changed, this);
@@ -43,8 +39,6 @@ var P5View = widgets.DOMWidgetView.extend({
 	value_changed: function() {
     console.log("scribble start value_changed");
     this.p5.values = this.model.get('values');
-    this.p5.width = this.model.get('size');
-    this.p5.height = this.model.get('size');
     this.p5.windowResized();
       console.log("scribble end value_changed");
   },

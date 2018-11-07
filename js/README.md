@@ -1,4 +1,4 @@
-Draw 2D primitives in a sketchy look, from p5.scribble.js
+Plotting library for Jupyter Notebook in a sketchy look, from p5.scribble.js
 
 Package Install
 ---------------
